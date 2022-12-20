@@ -10,7 +10,7 @@ var URI = '/' + VERSION + '/' + RESOURCE_NAME;
 var db = require('../../db/vacations')
 var apiErrors = require('../../util/errors')
 var apiMessages = require('../../util/messages')
-
+var MAX_AGE = 10;
 module.exports = function (router) {
     'use strict';
 
@@ -35,6 +35,7 @@ module.exports = function (router) {
                     res.status(404)
                 }
                 console.log("Retrieved vacations = %d", docs.length)
+                res.header('Cache-Control', 'private, max-age='+MAX_AGE)
                 res.send(docs)
             }
         });
@@ -56,6 +57,7 @@ module.exports = function (router) {
                 res.setHeader('content-type', 'application/json')
                 res.status(400).send(userError)
             } else {
+                res.header('Cache-Control', 'private, max-age='+MAX_AGE)
                 res.send(saved)
             }
         });
