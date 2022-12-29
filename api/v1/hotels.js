@@ -6,9 +6,9 @@
  var URI = '/' + VERSION + '/' + RESOURCE_NAME; 
  
  // Setup the vacations db
- var db = require('../../db/hotels');
- var apiErrors = require('../../util/errors');
- var apiMessages = require('../../util/messages');
+ var db = require('../../db/hotels')
+ var apiErrors = require('../../util/errors')
+ var apiMessages = require('../../util/messages')
  module.exports = function(router){
      'use strict';
  
