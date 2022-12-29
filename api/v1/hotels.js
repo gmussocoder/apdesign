@@ -6,7 +6,7 @@
  var URI = '/' + VERSION + '/' + RESOURCE_NAME; 
  
  // Setup the vacations db
- var db = require('../../db/hotels')
+ var db = require('../../db/hotels');
  
  module.exports = function(router){
      'use strict';
