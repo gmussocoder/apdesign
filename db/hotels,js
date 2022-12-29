@@ -1,8 +1,8 @@
 /**
  * All database operations related to the vacations collection will reside in this file
  */
-var model = require('../models/hotels')
-var settings = require('../db/settings')
+var model = require('../models/hotels');
+var settings = require('../db/settings');
 
 
 // CREATE multiple vacation packages

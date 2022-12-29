@@ -7,9 +7,9 @@ var VERSION = 'v1';
 var URI = '/' + VERSION + '/' + RESOURCE_NAME;
 
 // Setup the vacations db
-var db = require('../../db/vacations')
-var apiErrors = require('../../util/errors')
-var apiMessages = require('../../util/messages')
+var db = require('../../db/vacations');
+var apiErrors = require('../../util/errors');
+var apiMessages = require('../../util/messages');
 var MAX_AGE = 10;
 module.exports = function (router) {
     'use strict';

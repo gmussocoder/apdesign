@@ -4,7 +4,7 @@
  * Model for the ACME vacation package.
  */
 
-var settings = require('../db/settings')
+var settings = require('../db/settings');
 
 
 var VacationsSchema = settings.mongoose.Schema(

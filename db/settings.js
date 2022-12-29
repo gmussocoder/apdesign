@@ -2,7 +2,7 @@
  * All database settings done in this file
  */
 
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 // This would make mongoose use native Promises
 mongoose.Promise = global.Promise;
 
