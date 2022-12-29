@@ -8,7 +8,7 @@
 process.env.DB_URI = require("./db/clouddb").DB_URI
 
 var express = require('express');
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
 
 var router = express.Router();
 require('./api/v1/vacations')(router);
