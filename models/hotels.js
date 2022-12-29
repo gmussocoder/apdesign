@@ -1,4 +1,4 @@
-var settings = require('../db/settings')
+var settings = require('../db/settings');
 
 
 var HotelsSchema = settings.mongoose.Schema(
