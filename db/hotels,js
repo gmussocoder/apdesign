@@ -22,5 +22,5 @@ exports.saveMany = function (rows, callback) {
 exports.select = function (criteria,options, callback) {
     model.Hotels.find(criteria, function (err, data) {
         callback(err, data)
-    }).select(options.fields)
+    }).select(options.fields) //ver comentario de arriba
 }
