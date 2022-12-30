@@ -9,6 +9,8 @@
  var db = require('../../db/hotels')
  var apiErrors = require('../../util/errors')
  var apiMessages = require('../../util/messages')
+ // La siguiente variable es para el Cache-Control:
+var MAX_AGE = 10;
  module.exports = function(router){
      'use strict';
  
@@ -38,6 +40,7 @@
                      res.status(404)
                  }
                  console.log("Retrieved hotels = %d",docs.length)
+                 res.header('Cache-Control', 'private, max-age='+MAX_AGE)
                  res.send(docs)
              }
          });

@@ -10,6 +10,7 @@ var URI = '/' + VERSION + '/' + RESOURCE_NAME;
 var db = require('../../db/vacations')
 var apiErrors = require('../../util/errors')
 var apiMessages = require('../../util/messages')
+// La siguiente variable es para el Cache-Control:
 var MAX_AGE = 10;
 module.exports = function (router) {
     'use strict';
