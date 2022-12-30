@@ -13,8 +13,7 @@ var bodyParser = require('body-parser')
 var router = express.Router();
 require('./api/v1/vacations')(router);
 
-//var router = express.Router();
-//require('./api/v1/hotels')(router);
+require('./api/v1/hotels')(router);
 
 // Create the express app
 app = express();
