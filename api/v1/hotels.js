@@ -25,7 +25,7 @@ var MAX_AGE = 10;
          // Esto es para paginación:
          var pagination = {limit:0, offset:0}
          if(req.query && req.query.limit !== undefined){
-            pagination.offset = req.query.offset
+            pagination.limit = req.query.limit
          }
          if(req.query && req.query.offset !== undefined){
             pagination.offset =req.query.offset
