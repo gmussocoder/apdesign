@@ -22,9 +22,18 @@ var MAX_AGE = 10;
          if(req.query && req.query.fields !== undefined){
             fields =  createFields(req.query.fields)
          }
- 
+         // Esto es para paginación:
+         var pagination = {limit:0, offset:0}
+         if(req.query && req.query.limit !== undefined){
+            pagination.offset = req.query.offset
+         }
+         if(req.query && req.query.offset !== undefined){
+            pagination.offset =req.query.offset
+         }
+
+         
          //2. Setup options
-         var options = {fields:fields}
+         var options = {fields:fields, pagination:pagination}
          console.log(options)
  
          //3. execute the query

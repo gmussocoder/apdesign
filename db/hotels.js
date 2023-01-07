@@ -20,7 +20,14 @@ exports.saveMany = function (rows, callback) {
 //    fields: {/** Projection **/}
 // }
 exports.select = function (criteria,options, callback) {
+    //variables locales para captura de limit y offset
+    var lim = 0
+    var off = 0
+    if(options.pagination.limit !== undefined){
+        if(options.pagination.limit !== undefined) lim = parseInt(options.pagination.limit)
+        if(options.pagination.offset !== undefined) off = parseInt(options.pagination.offset)        
+    }
     model.Hotels.find(criteria, function (err, data) {
         callback(err, data)
-    }).select(options.fields) //ver comentario de arriba
+    }).select(options.fields).limit(lim).skip(off) //ver comentario de arriba
 }
