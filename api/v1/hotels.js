@@ -9,12 +9,18 @@
  var db = require('../../db/hotels')
  var apiErrors = require('../../util/errors')
  var apiMessages = require('../../util/messages')
+
+ //La siguiente Línea es para Basic Auth: 
+var basicauth = require(__dirname + '../../../basicauth')
+var auth = basicauth.auth
+
  // La siguiente variable es para el Cache-Control:
 var MAX_AGE = 10;
+
  module.exports = function(router){
      'use strict';
- 
-     router.route(URI).get(function(req, res,next){
+     //Se agrega "auth" para basic auth:
+     router.route(URI).get(auth, function(req, res,next){
          console.log("GET Hotels")
          
          //1. fields
