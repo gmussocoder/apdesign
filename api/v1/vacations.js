@@ -11,6 +11,11 @@ const { ObjectId } = require('mongoose');
 var db = require('../../db/vacations')
 var apiErrors = require('../../util/errors')
 var apiMessages = require('../../util/messages')
+
+//La siguiente Línea es para Basic Auth: 
+var basicauth = require(__dirname + '../../../basicauth')
+var auth = basicauth.auth
+
 // La siguiente variable es para el Cache-Control:
 var MAX_AGE = 10;
 module.exports = function (router) {
@@ -20,7 +25,8 @@ module.exports = function (router) {
     // Active = validTill >= Today's date
 
     //    /v1/Vacations
-    router.route(URI).get(function (req, res, next) {
+    //Se agrega "auth" para basic auth:
+    router.route(URI).get(auth, function (req, res, next) {
         console.log("GET Vacations")
         //1. Setup query riteria for the active pacakages
         var criteria = { validTill: { $gte: new Date() } }
@@ -38,6 +44,38 @@ module.exports = function (router) {
                 }
                 console.log("Retrieved vacations = %d", docs.length)
                 res.header('Cache-Control', 'private, max-age='+MAX_AGE)
+                res.send(docs)
+            }
+        });
+    });
+    // Solution to the problem - Extend the vacations API to add RETRIEVAL of specific vacation package
+    // v1/vacations/:id
+    //Se agrega "auth" para basic auth:
+    router.route(URI+"/:name").get(auth, function (req, res, next) {
+        var name = req.params.name || ''
+
+        if (name === '') {
+            res.sendStatus(400)
+            return
+        }
+        console.log("GET Vacations : %s", name)
+        //1. Setup query riteria for the active pacakages
+        // In addition to the date check we need to look for a package with the name received in request
+        // Added name: { $eq : name} to the criteria
+        var criteria = { validTill: { $gte: new Date()}, name: { $eq : name} }
+
+        //2. Select
+        db.select(criteria, function (err, docs) {
+
+            if (err) {
+                console.log(err)
+                res.status(500)
+                res.send("Error connecting to db")
+            } else {
+                if (docs.length == 0) {
+                    res.status(404)
+                }
+                console.log("Retrieved vacations = %d", docs.length)
                 res.send(docs)
             }
         });
