@@ -17,12 +17,12 @@ var router = express.Router();
 require('./api/v1/vacations')(router);
 
 require('./api/v1/hotels')(router);
-
+require('./api/v1/token')(router);
 // Create the express app
 app = express();
 
 //La siguiente línea es para autorización basic:
-var auth = basicauth.auth
+//var auth = basicauth.auth
 
 // Setup the body parser
 //app.use(bodyParser.urlencoded({extended: true}));

@@ -6,15 +6,22 @@ var RESOURCE_NAME = 'vacations';
 var VERSION = 'v1';
 var URI = '/' + VERSION + '/' + RESOURCE_NAME;
 
+
 const { ObjectId } = require('mongoose');
 // Setup the vacations db
 var db = require('../../db/vacations')
 var apiErrors = require('../../util/errors')
 var apiMessages = require('../../util/messages')
 
+//La siguiente línea es para validación con Token:
+var auth = require('./token')
+var jwtValidate = require(__dirname + '../../tokens/validator')
+auth = jwtValidate.auth
 //La siguiente Línea es para Basic Auth: 
-var basicauth = require(__dirname + '../../../basicauth')
-var auth = basicauth.auth
+//var basicauth = require(__dirname + '../../../basicauth')
+//var auth = basicauth.auth
+
+
 
 // La siguiente variable es para el Cache-Control:
 var MAX_AGE = 10;
